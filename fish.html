@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiseha Seifu Jiksa - Portfolio</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-right: 0;
+            padding-left: 40px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            right: auto;
+            left: -10px;
+            border-left: none;
+            border-right: 10px solid white;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 5px;
+        }
+        
+        .skill-list {
+            list-style-type: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .skill-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .cert-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-content::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Placeholder for profile image - replace with actual image -->
+            <div class="profile-img" style="background-color: #ddd; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                <span style="color: #777;">Profile Image</span>
+            </div>
+            <h1>Fiseha Seifu Jiksa</h1>
+            <p class="tagline">Dynamic Professional with 10+ Years in Sales, Marketing & Project Management</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Sahilete Mihret road, Addis Ababa, Ethiopia</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>+251920468588 / +251921776533</span>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <span>flove1387@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="card">
+                <p>Results-driven professional with over 10 years of cross-industry experience in sales, marketing, and project management. Proven ability to drive revenue growth, lead high-impact campaigns, and execute strategic initiatives across healthcare, FMCG, ICT, and education sectors. Strong background in business development, digital marketing, and team leadership.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 2025 - Present</div>
+                        <h3>Account Management Head</h3>
+                        <h4>Niyat Consultancy</h4>
+                        <ul>
+                            <li>Lead client relationship management and business growth for key accounts</li>
+                            <li>Manage and mentor a team of Account Managers</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2023 - June 2025</div>
+                        <h3>Sales and Marketing Manager</h3>
+                        <h4>New Leaf Fertility Center</h4>
+                        <ul>
+                            <li>Spearhead digital marketing campaigns and awareness creation strategies</li>
+                            <li>Lead patient engagement, branding, and revenue growth initiatives</li>
+                            <li>Coordinate nationwide symposiums and referral programs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">April 2022 - Nov 2023</div>
+                        <h3>Project Manager</h3>
+                        <h4>EMG Consulting</h4>
+                        <ul>
+                            <li>Directed end-to-end implementation of strategic development projects</li>
+                            <li>Managed budgets, stakeholder relationships, and evaluation frameworks</li>
+                            <li>Ensured timely delivery aligned with client goals</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Feb 2021 - March 2022</div>
+                        <h3>Sales and Marketing Manager</h3>
+                        <h4>Hadero Coffee Company</h4>
+                        <ul>
+                            <li>Drove B2B and B2C engagement strategies, increasing market penetration</li>
+                            <li>Led promotional campaign execution and distributor network expansion</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 2020 - Feb 2021</div>
+                        <h3>Portfolio Manager</h3>
+                        <h4>Addis Concept Property Management (ADCO)</h4>
+                        <ul>
+                            <li>Managed diverse property portfolio, contracts, and client relations</li>
+                            <li>Oversaw budgeting, tenant communications, and service delivery</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">April 2019 - March 2020</div>
+                        <h3>Sales and Marketing Manager</h3>
+                        <h4>Resel Pick Pick ICT Technology</h4>
+                        <ul>
+                            <li>Led sales strategy, digital marketing, and CRM implementation</li>
+                            <li>Conducted market research and built client relationships</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2016 - Jan 2019</div>
+                        <h3>Sales and Marketing Representative</h3>
+                        <h4>Transsion Holding PLC (Tecno Mobile)</h4>
+                        <ul>
+                            <li>Promoted and sold mobile products through retail outlets</li>
+                            <li>Managed distribution channels and executed in-store branding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <h3>MBA (Master of Business Administration)</h3>
+                <p>Lunar International College | 2019 - 2021</p>
+            </div>
+            <div class="card">
+                <h3>BSc in Electrical and Computer Engineering</h3>
+                <p>Mekelle University | 2010 - 2015</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Project & Operations Management</h3>
+                    <ul class="skill-list">
+                        <li>Project planning and scheduling</li>
+                        <li>Budgeting and financial management</li>
+                        <li>Risk management and mitigation</li>
+                        <li>Quality assurance and control</li>
+                        <li>Stakeholder engagement and management</li>
+                        <li>Resource allocation and optimization</li>
+                        <li>Change management implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Sales & Marketing Expertise</h3>
+                    <ul class="skill-list">
+                        <li>Market research and competitive analysis</li>
+                        <li>Product positioning and pricing strategies</li>
+                        <li>Lead generation and pipeline management</li>
+                        <li>CRM systems and customer retention</li>
+                        <li>Marketing campaign planning/execution</li>
+                        <li>Digital marketing (SEO, SEM, social media)</li>
+                        <li>Sales forecasting and target achievement</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Business Strategy & Financial Acumen</h3>
+                    <ul class="skill-list">
+                        <li>Portfolio analysis and optimization</li>
+                        <li>Investment evaluation and selection</li>
+                        <li>Asset allocation strategies</li>
+                        <li>Growth opportunity identification</li>
+                        <li>Contract negotiation and deal structuring</li>
+                        <li>Revenue forecasting and financial modeling</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Leadership & Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Strategic thinking and planning</li>
+                        <li>Team leadership and motivation</li>
+                        <li>Conflict resolution and negotiation</li>
+                        <li>Decision-making and prioritization</li>
+                        <li>Adaptability in dynamic environments</li>
+                        <li>Time management and multitasking</li>
+                        <li>Persuasive communication (verbal/written)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <div class="cert-icon">📊</div>
+                    <h3>Digital Marketing</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">🤖</div>
+                    <h3>Generative AI for Beginners</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">🔍</div>
+                    <h3>Google Ads Campaign</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">🎨</div>
+                    <h3>Graphic Design with Photoshop</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">💰</div>
+                    <h3>Business Finance Foundations</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">🧠</div>
+                    <h3>Introduction to Neural Networks</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">⚙️</div>
+                    <h3>Operations Management</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">📈</div>
+                    <h3>FSSC 22000 Quality Management</h3>
+                    <p>IQM</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">⛓️</div>
+                    <h3>Blockchain Basics</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">💻</div>
+                    <h3>MEAN Stack Fundamentals</h3>
+                    <p>Great Learning Academy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Automated Fleet Management</h3>
+                        <p>Customized system for decreasing drunk driving incidents through automated monitoring and alerts.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Automated Employee Attendance</h3>
+                        <p>Attendance automation through QR code scanning on mobile devices for efficient workforce management.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">After-Sales Service Impact Analysis</h3>
+                        <p>Research on the effect of after-sales service on customer satisfaction and loyalty in the mobile industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/fiseha-seifu-b15b56113" class="social-link">LinkedIn</a>
+                <a href="mailto:flove1387@gmail.com" class="social-link">Email</a>
+                <a href="tel:+251920468588" class="social-link">Phone</a>
+            </div>
+            <p>&copy; 2025 Fiseha Seifu Jiksa. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
